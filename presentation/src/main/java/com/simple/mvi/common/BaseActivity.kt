@@ -21,7 +21,7 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutResId())
+//        setContentView(getLayoutResId())
         initUI()
         viewModel.state.observe(this, {
             viewState = it
