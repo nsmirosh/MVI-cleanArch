@@ -45,6 +45,23 @@ class CharactersManagerImpl(private val api: ApiService) : CharactersManager {
     }.applyCommonSideEffects().catch {
         emit(Result.Error(CallErrors.ErrorException(it)))
     }
+
+
+    override fun getCharacterDetails(id: Long): Flow<Result<Persona>> = flow {
+        api.getCharacterDetails(id).run {
+            if (this.isSuccessful) {
+                if (this.body() == null ) {
+                    emit(Result.Error(CallErrors.ErrorEmptyData))
+                } else {
+                    emit(Result.Success(this.body()!!.toModel()))
+                }
+            } else {
+                emit(Result.Error(CallErrors.ErrorServer))
+            }
+        }
+    }.applyCommonSideEffects().catch {
+        emit(Result.Error(CallErrors.ErrorException(it)))
+    }
 }
 
 //TODO : GET RESPONSE GENERIC FUNCTION

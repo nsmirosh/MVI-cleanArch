@@ -4,6 +4,7 @@ package com.simple.mvi.di.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.simple.mvi.di.annotations.ViewModelKey
+import com.simple.mvi.features.character.CharacterViewModel
 import com.simple.mvi.features.home.HomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,6 +20,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CharacterViewModel::class)
+    abstract fun bindCharacterViewModel(characterViewModel: CharacterViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: DaggerViewModelFactory): ViewModelProvider.Factory

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CharacterActivity"
+            android:name=".features.character.ui.CharacterActivity"
             android:exported="true" />
         <activity android:name=".features.home.ui.HomeActivity"
             android:exported="true"
