@@ -23,7 +23,7 @@ class HomeActivity :
 
     private val mAdapter = CharactersAdapter {
         startActivity(Intent(this, CharacterActivity::class.java).apply {
-            putExtra("id", it)
+            putExtra("id", it.toLong())
         })
     }
 

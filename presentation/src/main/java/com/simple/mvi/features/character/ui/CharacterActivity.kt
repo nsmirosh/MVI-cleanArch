@@ -12,7 +12,10 @@ import com.simple.mvi.features.character.CharacterState
 import com.simple.mvi.features.character.CharacterViewModel
 import com.simple.mvi.features.home.HomeIntent
 
-class CharacterActivity : BaseActivity<CharacterIntent, CharacterAction, CharacterState, CharacterViewModel>(CharacterViewModel::class.java) {
+class CharacterActivity :
+    BaseActivity<CharacterIntent, CharacterAction, CharacterState, CharacterViewModel>(
+        CharacterViewModel::class.java
+    ) {
 
 
     private var _binding: ActivityCharacterBinding? = null
@@ -30,17 +33,18 @@ class CharacterActivity : BaseActivity<CharacterIntent, CharacterAction, Charact
     }
 
     override fun initDATA() {
-        dispatchIntent(CharacterIntent.LoadCharacter(2))
+        dispatchIntent(CharacterIntent.LoadCharacter(intent.getLongExtra("id", 0)))
     }
 
     override fun initEVENT() {
 
     }
 
-    override fun render(state: CharacterState)  = with(state){
-        when(state) {
+    override fun render(state: CharacterState) = with(state) {
+        when (state) {
             is CharacterState.Exception -> {
-                _binding!!.tvCharacterName.text = state.callErrors.getMessage(this@CharacterActivity)
+                _binding!!.tvCharacterName.text =
+                    state.callErrors.getMessage(this@CharacterActivity)
             }
             is CharacterState.ResultCharacter -> {
                 _binding!!.tvCharacterName.text = state.data.name
