@@ -20,13 +20,11 @@ class HomeActivity :
 
     private var _binding: ActivityMainBinding? = null
 
-
     private val mAdapter = CharactersAdapter {
         startActivity(Intent(this, CharacterActivity::class.java).apply {
             putExtra("id", it.toLong())
         })
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         _binding = ActivityMainBinding.inflate(layoutInflater)

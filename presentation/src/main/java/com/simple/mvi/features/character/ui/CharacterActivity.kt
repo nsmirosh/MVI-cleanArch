@@ -1,6 +1,7 @@
 package com.simple.mvi.features.character.ui
 
 import android.os.Bundle
+import coil.load
 import com.simple.mvi.R
 import com.simple.mvi.common.BaseActivity
 import com.simple.mvi.common.getMessage
@@ -40,7 +41,7 @@ class CharacterActivity :
 
     }
 
-    override fun render(state: CharacterState) = with(state) {
+    override fun render(state: CharacterState) {
         when (state) {
             is CharacterState.Exception -> {
                 _binding!!.tvCharacterName.text =
@@ -48,6 +49,7 @@ class CharacterActivity :
             }
             is CharacterState.ResultCharacter -> {
                 _binding!!.tvCharacterName.text = state.data.name
+                _binding!!.ivCharacterImage.load(state.data.image)
             }
             is CharacterState.Loading -> {
                 _binding!!.tvCharacterName.text = "Loading"
